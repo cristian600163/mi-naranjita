@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> MI VELITA JAMAS SE APAGARA MI AMOR</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      background: linear-gradient(black, #3b0066);
+      overflow: hidden;
+      position: relative;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    video#bgVideo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(0.6);
+    }
+
+    #heartButton {
+      background: linear-gradient(to right, #8e2de2, #ff6ec4);
+      border: none;
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      font-size: 28px;
+      color: white;
+      font-weight: bold;
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      box-shadow: 0 0 20px #ff6ec4;
+      clip-path: path('M 60 20 C 40 -10, 0 10, 60 90 C 120 10, 80 -10, 60 20 Z');
+      transition: transform 0.3s ease;
+    }
+
+    #heartButton:hover {
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    #messageBox {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #messageBox img {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    #messageText {
+      position: absolute;
+      top: 35%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      color: #4b004b;
+      font-size: 20px;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px white;
+    }
+
+    #nextBtn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #ff6ec4;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #8e2de2;
+      cursor: pointer;
+    }
+
+    .heart-touch {
+      position: absolute;
+      font-size: 24px;
+      color: #ff69b4;
+      animation: pop 1s ease-out forwards;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(2); opacity: 0; top: -30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <video id="bgVideo" autoplay loop muted>
+    <source src="855405-uhd_3840_2160_25fps.mp4" type="video/mp4">
+  </video>
+
+  <button id="heartButton">L & C</button>
+
+  <div id="messageBox">
+    <img src="cuadro.jpg" alt="Cuadro romántico">
+    <div id="messageText"></div>
+    <button id="nextBtn">Te amo mi naranjita</button>
+  </div>
+
+  <script>
+    const messages = [
+      // 🔽 ESCRIBE AQUÍ TUS MENSAJES DE AMOR
+
+
+     "Eres la luz que ilumina mi alma 💖",
+      "Cada segundo contigo es un regalo 🎁",
+      "Nuestro amor es eterno como esta llama 🔥",
+      "Te amo más de lo que las palabras pueden decir 🥺",
+      "Siempre estare a tu lado mi amor no importa que pase , L & C 💑",
+      "Se que avaces peleamos amor pero al final del dia siempre te voy a elegir mi naranjita",
+"Te amo mucho mi tesorito y que jamas se te olvide",
+"Porti lo voy a intentar una y mil veces y siempre  voy a querer ser mejor novio para ti amor",
+"Nada en este mundo se compara con tu hermosa sonrisa ",
+"Cada dia me enamoro mas de ti pues eres lo mas cercano ala perfeccion ",
+"Para mi eres importante,Para mi vales cada segundo,para mi vales la vida amor ",
+"Eres el mejor regalo que la vida pudo darme ",
+"Por ti veria bts solo para estar a tu lado y entenderte mas ",
+"Eres muy valiosa para mi vida amorcito ",
+"Amo todo de ti  desde tu amor a bts hasta tu alma todo de ti me gusta amor",
+"No solo eres buena hija eres buena novia",
+"Tal ves no puedo amarte como quisieras o ves en tik tok pero a mi manera veras lo mucho que te amo",
+"Quiero pasar mi vida a tu lado por que eres el amor de mi vida ",
+"No solo eres mi novia tambien eres mi mejor amiga y mi familia ",
+"Nunca dudes cunato te amo mi bb",
+"Jamas dejare que nuestra llamita se apague",
+      "Eso solo es una parte de lo mucho que pienso en ti todos los dias amor  💌"
+    ];
+
+    let currentIndex = 0;
+    const heartButton = document.getElementById('heartButton');
+    const messageBox = document.getElementById('messageBox');
+    const messageText = document.getElementById('messageText');
+    const nextBtn = document.getElementById('nextBtn');
+
+    heartButton.addEventListener('click', () => {
+      currentIndex = 0;
+      showMessage();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentIndex++;
+      if (currentIndex < messages.length) {
+        showMessage();
+      } else {
+        messageText.textContent = "🎉 Has llegado al final. ¡Te amo infinitamente! ❤️";
+        nextBtn.style.display = 'none';
+      }
+    });
+
+    function showMessage() {
+      messageText.textContent = messages[currentIndex];
+      messageBox.style.display = 'flex';
+      nextBtn.style.display = 'inline-block';
+    }
+
+    // TOQUE CON CORAZÓN DONDE TOCAS
+    document.addEventListener('touchstart', (e) => {
+      const heart = document.createElement('div');
+      heart.classList.add('heart-touch');
+      heart.innerHTML = '❤️';
+      heart.style.left = `${e.touches[0].clientX}px`;
+      heart.style.top = `${e.touches[0].clientY}px`;
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 1000);
+    });
+  </script>
+
+</body>
+</html>
